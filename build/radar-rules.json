@@ -2905,6 +2905,27 @@
       }
     ]
   },
+  "adquan.com": {
+    "_name": "广告门",
+    "www": [
+      {
+        "title": "案例库",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/case_library/index"
+        ],
+        "target": "/adquan/case_library"
+      },
+      {
+        "title": "最新文章",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/"
+        ],
+        "target": "/adquan/"
+      }
+    ]
+  },
   "aeaweb.org": {
     "_name": "American Economic Association",
     ".": [
@@ -4772,12 +4793,12 @@
     "_name": "AP News",
     ".": [
       {
-        "title": "News",
+        "title": "News (from mobile client API)",
         "docs": "https://docs.rsshub.app/routes/traditional-media",
         "source": [
           "/"
         ],
-        "target": "/apnews/api/:tags?"
+        "target": "/apnews/mobile/:path{.+}?"
       },
       {
         "title": "News",
@@ -11569,9 +11590,9 @@
       }
     ]
   },
-  "domp4.cc": {
+  "xlmp4.com": {
     "_name": "DoMP4 影视",
-    ".": [
+    "www": [
       {
         "title": "剧集订阅",
         "docs": "https://docs.rsshub.app/routes/multimedia",
@@ -15482,6 +15503,19 @@
       }
     ]
   },
+  "mof.gov.cn": {
+    "_name": "上海市人民政府",
+    "gss": [
+      {
+        "title": "关税政策文件",
+        "docs": "https://docs.rsshub.app/routes/government",
+        "source": [
+          "/gzdt/:category/"
+        ],
+        "target": "/gov/mof/gss/:category"
+      }
+    ]
+  },
   "moj.gov.cn": {
     "_name": "上海市人民政府",
     "www": [
@@ -17108,6 +17142,19 @@
           "/novel/:id"
         ],
         "target": "/hameln/chapter/:id"
+      }
+    ]
+  },
+  "hanime1.me": {
+    "_name": "Hanime1",
+    ".": [
+      {
+        "title": "新番预告",
+        "docs": "https://docs.rsshub.app/routes/anime",
+        "source": [
+          "/previews/:date"
+        ],
+        "target": "/hanime1/previews/:date"
       }
     ]
   },
@@ -19928,6 +19975,27 @@
       }
     ]
   },
+  "jandan.net": {
+    "_name": "煎蛋",
+    "i": [
+      {
+        "title": "Feed",
+        "docs": "https://docs.rsshub.app/routes/other",
+        "source": [
+          "/"
+        ],
+        "target": "/jandan/jandan"
+      },
+      {
+        "title": "Section",
+        "docs": "https://docs.rsshub.app/routes/other",
+        "source": [
+          "/:category"
+        ],
+        "target": "/jandan/jandan/:category?"
+      }
+    ]
+  },
   "javbus.com": {
     "_name": "JavBus",
     "www": [
@@ -20165,6 +20233,14 @@
   "jin10.com": {
     "_name": "金十数据",
     ".": [
+      {
+        "title": "外汇",
+        "docs": "https://docs.rsshub.app/routes/finance",
+        "source": [
+          "/"
+        ],
+        "target": "/jin10/category/:id"
+      },
       {
         "title": "市场快讯",
         "docs": "https://docs.rsshub.app/routes/finance",
@@ -20601,6 +20677,19 @@
       }
     ]
   },
+  "jpmorganchase.com": {
+    "_name": "JPMorgan Chase",
+    ".": [
+      {
+        "title": "Research Topics",
+        "docs": "https://docs.rsshub.app/routes/finance",
+        "source": [
+          "/institute/all-topics"
+        ],
+        "target": "/jpmorganchase/"
+      }
+    ]
+  },
   "12356782.xyz": {
     "_name": "极品性感美女",
     "www": [
@@ -21021,7 +21110,7 @@
     ]
   },
   "kurogames.com": {
-    "_name": "库洛游戏",
+    "_name": "库洛游戏 | Kuro Games",
     "mc": [
       {
         "title": "鸣潮 — 游戏公告、新闻与活动",
@@ -21030,7 +21119,18 @@
           "/m/main/news",
           "/main"
         ],
-        "target": "/kurogames/wutheringwaves/news"
+        "target": "/kurogames/wutheringwaves/news/:language?"
+      }
+    ],
+    "wutheringwaves": [
+      {
+        "title": "Wuthering Waves — Game announcements, news and events",
+        "docs": "https://docs.rsshub.app/routes/game",
+        "source": [
+          "/en/main/news",
+          "/en/main"
+        ],
+        "target": "/kurogames/wutheringwaves/news/:language?"
       }
     ]
   },
@@ -37591,6 +37691,16 @@
           "/index/:category.htm"
         ],
         "target": "/xjtu/yz/:category"
+      }
+    ],
+    "zs": [
+      {
+        "title": "本科招生网",
+        "docs": "https://docs.rsshub.app/routes/university",
+        "source": [
+          "/:category"
+        ],
+        "target": "/xjtuparams=>{const category=params.category;return`/xjtu/zs${category?`/${category}`:\"\"}`}"
       }
     ],
     "gs": [

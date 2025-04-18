@@ -5374,6 +5374,79 @@
     "url": "pubs.acs.org",
     "lang": "en"
   },
+  "adquan": {
+    "routes": {
+      "/case_library": {
+        "path": "/case_library",
+        "name": "案例库",
+        "url": "www.adquan.com",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/adquan/case_library",
+        "categories": [
+          "new-media"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.adquan.com/case_library/index"
+            ],
+            "target": "/case_library"
+          }
+        ],
+        "view": 0,
+        "location": "case-library.ts"
+      },
+      "/": {
+        "path": "/",
+        "name": "最新文章",
+        "url": "www.adquan.com",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/adquan",
+        "categories": [
+          "new-media"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.adquan.com"
+            ],
+            "target": "/"
+          }
+        ],
+        "view": 0,
+        "location": "index.ts"
+      }
+    },
+    "name": "广告门",
+    "url": "adquan.com",
+    "categories": [
+      "new-media"
+    ],
+    "description": "一个行业的跌宕起伏",
+    "lang": "zh-CN"
+  },
   "aeaweb": {
     "routes": {
       "/:id": {
@@ -8593,72 +8666,17 @@
   },
   "apnews": {
     "routes": {
-      "/api/:tags?": {
-        "path": "/api/:tags?",
+      "/mobile/:path{.+}?": {
+        "path": "/mobile/:path{.+}?",
         "categories": [
-          "traditional-media",
-          "popular"
+          "traditional-media"
         ],
-        "example": "/apnews/api/apf-topnews",
+        "example": "/apnews/mobile/ap-top-news",
         "view": 0,
         "parameters": {
-          "tags": {
-            "description": "Getting a list of articles from a public API based on tags.",
-            "options": [
-              {
-                "value": "apf-topnews",
-                "label": "Top News"
-              },
-              {
-                "value": "apf-sports",
-                "label": "Sports"
-              },
-              {
-                "value": "apf-politics",
-                "label": "Politics"
-              },
-              {
-                "value": "apf-entertainment",
-                "label": "Entertainment"
-              },
-              {
-                "value": "apf-usnews",
-                "label": "US News"
-              },
-              {
-                "value": "apf-oddities",
-                "label": "Oddities"
-              },
-              {
-                "value": "apf-Travel",
-                "label": "Travel"
-              },
-              {
-                "value": "apf-technology",
-                "label": "Technology"
-              },
-              {
-                "value": "apf-lifestyle",
-                "label": "Lifestyle"
-              },
-              {
-                "value": "apf-business",
-                "label": "Business"
-              },
-              {
-                "value": "apf-Health",
-                "label": "Health"
-              },
-              {
-                "value": "apf-science",
-                "label": "Science"
-              },
-              {
-                "value": "apf-intlnews",
-                "label": "International News"
-              }
-            ],
-            "default": "apf-topnews"
+          "path": {
+            "description": "Corresponding path from AP News website",
+            "default": "ap-top-news"
           }
         },
         "features": {
@@ -8676,11 +8694,11 @@
             ]
           }
         ],
-        "name": "News",
+        "name": "News (from mobile client API)",
         "maintainers": [
           "dzx-dzx"
         ],
-        "location": "api.ts"
+        "location": "mobile-api.ts"
       },
       "/rss/:category?": {
         "path": "/rss/:category?",
@@ -27548,7 +27566,7 @@
         ],
         "example": "/domp4/detail/LBTANI22222I",
         "parameters": {
-          "id": "从剧集详情页 URL 处获取，如：`https://www.mp4kan.com/html/LBTANI22222I.html`，取 `.html` 前面部分"
+          "id": "从剧集详情页 URL 处获取，如：`https://www.xlmp4.com/html/LBTANI22222I.html`，取 `.html` 前面部分"
         },
         "features": {
           "requireConfig": false,
@@ -27561,15 +27579,16 @@
         "radar": [
           {
             "source": [
-              "domp4.cc/detail/:id"
+              "www.xlmp4.com/detail/:id"
             ]
           }
         ],
         "name": "剧集订阅",
         "maintainers": [
-          "savokiss"
+          "savokiss",
+          "pseudoyu"
         ],
-        "description": "::: tip\n由于大部分详情页是 `/html/xxx.html`，还有部分是 `/detail/123.html`，所以此处做了兼容，id 取 `xxx` 或者 `123` 都可以。\n\n新增 `second` 参数，用于选择下载地址二（地址二不可用或者不填都默认地址一），用法: `/domp4/detail/LBTANI22222I?second=1`。\n:::",
+        "description": "::: tip\n由于大部分详情页是 `/html/xxx.html`，还有部分是 `/detail/123.html`，所以此处做了兼容，id 取 `xxx` 或者 `123` 都可以。\n\n新增 `second` 参数，用于选择下载地址二（地址二不可用或者不填都默认地址一），用法: `/domp4/detail/LBTANI22222I?second=1`。\n\n域名频繁更换，目前使用 www.xlmp4.com\n:::",
         "location": "detail.ts"
       },
       "/latest_movie_bt": {
@@ -27590,16 +27609,17 @@
         "radar": [
           {
             "source": [
-              "domp4.cc/",
-              "domp4.cc/custom/update.html"
+              "www.xlmp4.com/",
+              "www.xlmp4.com/custom/update.html"
             ]
           }
         ],
         "name": "最近更新的电源BT列表",
         "maintainers": [
-          "xianghuawe"
+          "xianghuawe",
+          "pseudoyu"
         ],
-        "url": "domp4.cc/",
+        "url": "www.xlmp4.com/",
         "location": "latest-movie-bt.ts"
       },
       "/latest/:type?": {
@@ -27622,22 +27642,23 @@
         "radar": [
           {
             "source": [
-              "domp4.cc/",
-              "domp4.cc/custom/update.html"
+              "www.xlmp4.com/",
+              "www.xlmp4.com/custom/update.html"
             ]
           }
         ],
         "name": "最近更新",
         "maintainers": [
-          "savokiss"
+          "savokiss",
+          "pseudoyu"
         ],
-        "url": "domp4.cc/",
+        "url": "www.xlmp4.com/",
         "location": "latest.ts"
       }
     },
     "name": "DoMP4 影视",
-    "url": "domp4.cc",
-    "description": "::: tip\n由于网站有多个备用域名，默认使用 `mp4us.com`，可以通过在路由最后加上 `?domain=<域名>` 切换域名。\n\n目前可用域名有：\n\n```javascript\n['domp4.cc', 'mp4kan.com', 'mp4us.com', 'wemp4.com', 'dbmp4.com']\n```\n:::",
+    "url": "www.xlmp4.com",
+    "description": "::: tip\n    域名频繁更换，目前使用 www.xlmp4.com\n:::",
     "lang": "zh-CN"
   },
   "dongqiudi": {
@@ -40175,6 +40196,38 @@
         "description": "#### 政府债券管理\n\n| 国债管理工作动态 | 记账式国债 (含特别国债) 发行 | 储蓄国债发行 | 地方政府债券管理      |\n| ---------------- | ---------------------------- | ------------ | --------------------- |\n| gzfxgzdt         | gzfxzjs                      | gzfxdzs      | difangzhengfuzhaiquan |",
         "location": "mof/bond.ts"
       },
+      "/mof/gss/:category?": {
+        "path": "/mof/gss/:category?",
+        "categories": [
+          "government"
+        ],
+        "example": "/gov/mof/gss",
+        "parameters": {
+          "category": "列表标签，默认为政策发布"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "name": "关税政策文件",
+        "maintainers": [
+          "la3rence"
+        ],
+        "description": "#### 关税文件发布\n\n| 政策发布 | 政策解读 |\n| ------------- | -------------- |\n| zhengcefabu   | zhengcejiedu   |",
+        "radar": [
+          {
+            "source": [
+              "gss.mof.gov.cn/gzdt/:category/"
+            ],
+            "target": "/mof/gss/:category"
+          }
+        ],
+        "location": "mof/gss.ts"
+      },
       "/mofcom/article/:suffix{.+}": {
         "path": "/mofcom/article/:suffix{.+}",
         "name": "Unknown",
@@ -40973,14 +41026,16 @@
           {
             "source": [
               "nea.gov.cn/sjzz/ghs/"
-            ]
+            ],
+            "target": "/nea/sjzz/ghs"
           }
         ],
         "name": "发展规划司",
         "maintainers": [
-          "nczitzk"
+          "nczitzk",
+          "pseudoyu"
         ],
-        "url": "nea.gov.cn/sjzz/ghs/",
+        "url": "www.nea.gov.cn/sjzz/ghs/",
         "location": "nea/ghs.ts"
       },
       "/nifdc/:path{.+}?": {
@@ -43782,6 +43837,46 @@
     "name": "hameln",
     "url": "syosetu.org",
     "lang": "ja"
+  },
+  "hanime1": {
+    "routes": {
+      "/previews/:date": {
+        "path": "/previews/:date",
+        "name": "新番预告",
+        "maintainers": [
+          "kjasn"
+        ],
+        "example": "/hanime1/previews/202504",
+        "categories": [
+          "anime"
+        ],
+        "parameters": {
+          "date": {
+            "description": "Date in YYYYMM format"
+          }
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "hanime1.me/previews/:date"
+            ],
+            "target": "/previews/:date"
+          }
+        ],
+        "location": "previews.ts"
+      }
+    },
+    "name": "Hanime1",
+    "url": "hanime1.me",
+    "description": "NSFW WARNING!!! It contains adult content. Hanime1 provides adult anime"
   },
   "harvard": {
     "routes": {
@@ -51330,17 +51425,105 @@
     "routes": {
       "/": {
         "path": "/",
-        "name": "Unknown",
+        "example": "/jandan",
+        "name": "Feed",
         "maintainers": [
           "nczitzk",
-          "bigfei"
+          "bigfei",
+          "pseudoyu"
+        ],
+        "parameters": {},
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "i.jandan.net"
+            ],
+            "target": "/jandan"
+          }
         ],
         "location": "index.ts"
       },
-      "/:category": {
-        "path": "/:category",
-        "name": "Unknown",
-        "maintainers": [],
+      "/:category/:type?": {
+        "path": "/:category/:type?",
+        "example": "/jandan/top",
+        "name": "Section",
+        "maintainers": [
+          "nczitzk",
+          "pseudoyu"
+        ],
+        "parameters": {
+          "category": {
+            "description": "板块",
+            "options": [
+              {
+                "label": "热榜",
+                "value": "top"
+              },
+              {
+                "label": "问答",
+                "value": "qa"
+              },
+              {
+                "label": "树洞",
+                "value": "treehole"
+              },
+              {
+                "label": "随手拍",
+                "value": "ooxx"
+              },
+              {
+                "label": "无聊图",
+                "value": "pic"
+              },
+              {
+                "label": "鱼塘",
+                "value": "bbs"
+              }
+            ]
+          },
+          "type": {
+            "description": "热榜类型，仅当 category 选择 `top` 时有效",
+            "default": "4hr",
+            "options": [
+              {
+                "label": "4小时热门",
+                "value": "4hr"
+              },
+              {
+                "label": "3天内无聊图",
+                "value": "pic3days"
+              },
+              {
+                "label": "7天内无聊图",
+                "value": "pic7days"
+              }
+            ]
+          }
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "i.jandan.net/:category"
+            ],
+            "target": "/jandan/:category?"
+          }
+        ],
         "location": "section.ts"
       }
     },
@@ -52525,6 +52708,40 @@
   },
   "jin10": {
     "routes": {
+      "/category/:id": {
+        "path": "/category/:id",
+        "categories": [
+          "finance"
+        ],
+        "view": 5,
+        "example": "/jin10/category/36",
+        "parameters": {
+          "id": "分类id，见下表"
+        },
+        "description": "\n| Name           | ID   |\n|----------------|------|\n| 贵金属         | 1    |\n| 黄金           | 2    |\n| 白银           | 3    |\n| 钯金           | 4    |\n| 铂金           | 5    |\n| 石油           | 6    |\n| WTI原油        | 7    |\n| 布伦特原油     | 8    |\n| 欧佩克         | 9    |\n| 页岩气         | 10   |\n| 原油市场报告   | 11   |\n| 外汇           | 12   |\n| 欧元           | 13   |\n| 英镑           | 14   |\n| 日元           | 15   |\n| 美元           | 16   |\n| 瑞郎           | 17   |\n| 人民币         | 18   |\n| 期货           | 36   |\n| 油脂油料       | 145  |\n| 钢矿           | 146  |\n| 煤炭           | 147  |\n| 化工           | 148  |\n| 有色           | 149  |\n| 谷物           | 150  |\n| 糖棉果蛋       | 151  |\n| 生猪           | 152  |\n| 碳排放         | 154  |\n| 数字货币       | 19   |\n| 数字人民币     | 107  |\n| 科技           | 22   |\n| 手机           | 23   |\n| 电动汽车       | 39   |\n| 芯片           | 40   |\n| 中国突破       | 41   |\n| 5G             | 42   |\n| 量子计算       | 43   |\n| 航空航天       | 158  |\n| 元宇宙         | 165  |\n| 人工智能       | 168  |\n| 地缘局势       | 24   |\n| 缅甸局势       | 44   |\n| 印巴纷争       | 45   |\n| 中东风云       | 46   |\n| 阿富汗局势     | 155  |\n| 俄乌冲突       | 167  |\n| 人物           | 25   |\n| 鲍威尔         | 47   |\n| 马斯克         | 48   |\n| 拉加德         | 49   |\n| 特朗普         | 50   |\n| 拜登           | 51   |\n| 巴菲特         | 157  |\n| 央行           | 26   |\n| 美联储         | 53   |\n| 中国央行       | 54   |\n| 欧洲央行       | 55   |\n| 日本央行       | 56   |\n| 货币政策调整   | 137  |\n| 英国央行       | 141  |\n| 澳洲联储       | 159  |\n| 新西兰联储     | 160  |\n| 加拿大央行     | 161  |\n| 美股           | 27   |\n| 财报           | 59   |\n| Reddit散户动态 | 60   |\n| 个股动态       | 108  |\n| 港股           | 28   |\n| 美股回港       | 61   |\n| 交易所动态     | 62   |\n| 指数动态       | 63   |\n| 个股动态       | 109  |\n| A股            | 29   |\n| 美股回A        | 64   |\n| 券商分析       | 65   |\n| 板块异动       | 66   |\n| 大盘动态       | 67   |\n| 南北资金       | 68   |\n| 亚盘动态       | 69   |\n| IPO信息        | 70   |\n| 个股动态       | 110  |\n| 北交所         | 166  |\n| 基金           | 30   |\n| 投行机构       | 31   |\n| 标普、惠誉、穆迪 | 71  |\n| 美银           | 72   |\n| 高盛           | 112  |\n| 疫情           | 32   |\n| 疫苗动态       | 73   |\n| 确诊数据       | 74   |\n| 新冠药物       | 113  |\n| 债券           | 33   |\n| 政策           | 34   |\n| 中国           | 75   |\n| 美国           | 76   |\n| 欧盟           | 77   |\n| 日本           | 78   |\n| 贸易、关税     | 79   |\n| 碳中和         | 80   |\n| 中国香港       | 81   |\n| 英国           | 120  |\n| 房地产动态     | 156  |\n| 经济数据       | 35   |\n| 中国           | 82   |\n| 美国           | 83   |\n| 欧盟           | 84   |\n| 日本           | 85   |\n| 公司           | 37   |\n| 特斯拉         | 86   |\n| 苹果           | 90   |\n| 独角兽         | 91   |\n| 谷歌           | 92   |\n| 华为           | 93   |\n| 阿里巴巴       | 94   |\n| 小米           | 95   |\n| 字节跳动       | 116  |\n| 腾讯           | 117  |\n| 微软           | 118  |\n| 百度           | 119  |\n| 美团           | 162  |\n| 滴滴           | 163  |\n| 中国恒大       | 164  |\n| 灾害事故       | 38   |\n| 地震           | 96   |\n| 爆炸           | 97   |\n| 海啸           | 98   |\n| 寒潮           | 99   |\n| 洪涝           | 100  |\n| 火灾           | 101  |\n| 矿难           | 102  |\n| 枪击案         | 103  |\n",
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "jin10.com/"
+            ],
+            "target": ""
+          }
+        ],
+        "name": "外汇",
+        "maintainers": [
+          "laampui"
+        ],
+        "url": "jin10.com/",
+        "location": "category.ts"
+      },
       "/:important?": {
         "path": "/:important?",
         "categories": [
@@ -53663,6 +53880,44 @@
     "name": "江苏海洋大学",
     "url": "www.jou.edu.cn",
     "lang": "zh-CN"
+  },
+  "jpmorganchase": {
+    "routes": {
+      "/": {
+        "path": "/",
+        "example": "/jpmorganchase",
+        "categories": [
+          "finance"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "jpmorganchase.com/institute/all-topics"
+            ],
+            "target": "/"
+          }
+        ],
+        "name": "Research Topics",
+        "maintainers": [
+          "dousha"
+        ],
+        "url": "www.jpmorganchase.com/institute/all-topics",
+        "location": "research.ts"
+      }
+    },
+    "name": "JPMorgan Chase",
+    "url": "www.jpmorganchase.com",
+    "zh": {
+      "name": "摩根大通"
+    }
   },
   "jpxgmn": {
     "routes": {
@@ -55447,12 +55702,15 @@
   },
   "kurogames": {
     "routes": {
-      "/wutheringwaves/news": {
-        "path": "/wutheringwaves/news",
+      "/wutheringwaves/news/:language?": {
+        "path": "/wutheringwaves/news/:language?",
         "categories": [
           "game"
         ],
         "example": "/kurogames/wutheringwaves/news",
+        "parameters": {
+          "language": "The language to use for the content. Default: `zh`."
+        },
         "name": "鸣潮 — 游戏公告、新闻与活动",
         "radar": [
           {
@@ -55460,16 +55718,24 @@
               "mc.kurogames.com/m/main/news",
               "mc.kurogames.com/main"
             ]
+          },
+          {
+            "title": "Wuthering Waves — Game announcements, news and events",
+            "source": [
+              "wutheringwaves.kurogames.com/en/main/news",
+              "wutheringwaves.kurogames.com/en/main"
+            ]
           }
         ],
         "maintainers": [
+          "goestav",
           "enpitsulin"
         ],
-        "description": "",
+        "description": "\nLanguage codes for the `language` parameter:\n\n| Language | Code         |\n|----------|--------------|\n| English  | en           |\n| 日本語    | jp           |\n| 한국어     | kr           |\n| 简体中文   | zh (default) |\n| 繁體中文   | zh-tw        |\n| Español  | es           |\n| Français | fr           |\n| Deutsch  | de           |\n    ",
         "location": "wutheringwaves/news.ts"
       }
     },
-    "name": "库洛游戏",
+    "name": "库洛游戏 | Kuro Games",
     "url": "www.kurogames.com",
     "categories": [
       "game"
@@ -81652,7 +81918,7 @@
           "/:subforumid?",
           ""
         ],
-        "name": "Unknown",
+        "name": "Forum",
         "maintainers": [
           "qiwihui",
           "junfengP",
@@ -81672,7 +81938,7 @@
           "/:subforumid?",
           ""
         ],
-        "name": "Unknown",
+        "name": "Forum",
         "maintainers": [
           "qiwihui",
           "junfengP",
@@ -81692,7 +81958,7 @@
           "/:subforumid?",
           ""
         ],
-        "name": "Unknown",
+        "name": "Forum",
         "maintainers": [
           "qiwihui",
           "junfengP",
@@ -81712,7 +81978,7 @@
           "/:subforumid?",
           ""
         ],
-        "name": "Unknown",
+        "name": "Forum",
         "maintainers": [
           "qiwihui",
           "junfengP",
@@ -81732,7 +81998,7 @@
           "/:subforumid?",
           ""
         ],
-        "name": "Unknown",
+        "name": "Forum",
         "maintainers": [
           "qiwihui",
           "junfengP",
@@ -101188,14 +101454,15 @@
         "features": {
           "requireConfig": false,
           "requirePuppeteer": false,
-          "antiCrawler": false,
+          "antiCrawler": true,
           "supportBT": false,
           "supportPodcast": false,
           "supportScihub": false
         },
         "name": "公众号（搜狗来源）",
         "maintainers": [
-          "EthanWng97"
+          "EthanWng97",
+          "pseudoyu"
         ],
         "location": "sogou.ts"
       },
@@ -104046,6 +104313,64 @@
         "description": "栏目类型\n\n| 招生动态 | 通知公告 | 政策法规 | 招生统计 | 历年复试线 | 博士招生 | 硕士招生 | 推免生 | 其他招生 |\n| -------- | -------- | -------- | -------- | ---------- | -------- | -------- | ------ | -------- |\n| zsdt     | tzgg     | zcfg     | zstj     | lnfsx      | bszs     | sszs     | tms    | qtzs     |",
         "location": "yz.ts"
       },
+      "/zs/:category{.+}?": {
+        "path": "/zs/:category{.+}?",
+        "name": "本科招生网",
+        "url": "zs.xjtu.edu.cn",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/xjtu/zs/zsxx1/zskx",
+        "parameters": {
+          "category": {
+            "description": "分类，默认为 zsxx1/zskx，可在对应分类页 URL 中找到",
+            "options": [
+              {
+                "label": "招生快讯",
+                "value": "zsxx1/zskx"
+              },
+              {
+                "label": "招生政策",
+                "value": "zsxx1/zszc"
+              },
+              {
+                "label": "招生计划",
+                "value": "zsxx1/zsjh"
+              },
+              {
+                "label": "阳光公告",
+                "value": "zsxx1/yggg"
+              },
+              {
+                "label": "历年录取",
+                "value": "zsxx1/lnlq"
+              }
+            ]
+          }
+        },
+        "description": ":::tip\n若订阅 [招生快讯](https://zs.xjtu.edu.cn/zsxx1/zskx.htm)，网址为 `https://zs.xjtu.edu.cn/zsxx1/zskx.htm`，请截取 `https://zs.xjtu.edu.cn/` 到末尾 `.htm` 的部分 `zsxx1/zskx` 作为 `category` 参数填入，此时目标路由为 [`/xjtu/zs/zsxx1/zskx`](https://rsshub.app/xjtu/zs/zsxx1/zskx)。\n:::\n\n| [招生快讯](https://zs.xjtu.edu.cn/zsxx1/zskx.htm)   | [招生政策](https://zs.xjtu.edu.cn/zsxx1/zszc.htm)   | [招生计划](https://zs.xjtu.edu.cn/zsxx1/zsjh.htm)   | [阳光公告](https://zs.xjtu.edu.cn/zsxx1/yggg.htm)   | [历年录取](https://zs.xjtu.edu.cn/zsxx1/lnlq.htm)   |\n| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |\n| [zsxx1/zskx](https://rsshub.app/xjtu/zs/zsxx1/zskx) | [zsxx1/zszc](https://rsshub.app/xjtu/zs/zsxx1/zszc) | [zsxx1/zsjh](https://rsshub.app/xjtu/zs/zsxx1/zsjh) | [zsxx1/yggg](https://rsshub.app/xjtu/zs/zsxx1/yggg) | [zsxx1/lnlq](https://rsshub.app/xjtu/zs/zsxx1/lnlq) |\n",
+        "categories": [
+          "university"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "zs.xjtu.edu.cn/:category"
+            ]
+          }
+        ],
+        "view": 0,
+        "location": "zs.ts"
+      },
       "/2yuan/news/:id?": {
         "path": "/2yuan/news/:id?",
         "categories": [
@@ -105942,16 +106267,30 @@
   },
   "youtube": {
     "routes": {
-      "/channel/:id/:embed?": {
-        "path": "/channel/:id/:embed?",
+      "/channel/:id/:routeParams?": {
+        "path": "/channel/:id/:routeParams?",
         "categories": [
           "social-media"
         ],
         "example": "/youtube/channel/UCDwDMPOZfxVV0x_dz0eQ8KQ",
         "parameters": {
           "id": "YouTube channel id",
-          "embed": "Default to embed the video, set to any value to disable embedding"
+          "routeParams": "Extra parameters, see the table below"
         },
+        "radar": [
+          {
+            "source": [
+              "www.youtube.com/channel/:id"
+            ],
+            "target": "/channel/:id"
+          }
+        ],
+        "name": "Channel with id",
+        "maintainers": [
+          "DIYgod",
+          "pseudoyu"
+        ],
+        "description": ":::tip Parameter\n| Name       | Description                                                                         | Default |\n| ---------- | ----------------------------------------------------------------------------------- | ------- |\n| embed      | Whether to embed the video, fill in any value to disable embedding                  | embed   |\n| filterShorts | Whether to filter out shorts from the feed, fill in any falsy value to show shorts | true    |\n:::\n\n::: tip\nYouTube provides official RSS feeds for channels, for instance [https://www.youtube.com/feeds/videos.xml?channel_id=UCDwDMPOZfxVV0x_dz0eQ8KQ](https://www.youtube.com/feeds/videos.xml?channel_id=UCDwDMPOZfxVV0x_dz0eQ8KQ).\n:::",
         "features": {
           "requireConfig": [
             {
@@ -105965,19 +106304,6 @@
           "supportPodcast": false,
           "supportScihub": false
         },
-        "radar": [
-          {
-            "source": [
-              "www.youtube.com/channel/:id"
-            ],
-            "target": "/channel/:id"
-          }
-        ],
-        "name": "Channel with id",
-        "maintainers": [
-          "DIYgod"
-        ],
-        "description": "::: tip\nYouTube provides official RSS feeds for channels, for instance [https://www.youtube.com/feeds/videos.xml?channel_id=UCDwDMPOZfxVV0x_dz0eQ8KQ](https://www.youtube.com/feeds/videos.xml?channel_id=UCDwDMPOZfxVV0x_dz0eQ8KQ).\n:::",
         "location": "channel.ts"
       },
       "/charts/:category?/:country?/:embed?": {
@@ -106155,8 +106481,8 @@
         "url": "www.youtube.com/feed/subscriptions",
         "location": "subscriptions.ts"
       },
-      "/user/:username/:embed?": {
-        "path": "/user/:username/:embed?",
+      "/user/:username/:routeParams?": {
+        "path": "/user/:username/:routeParams?",
         "categories": [
           "social-media",
           "popular"
@@ -106165,8 +106491,9 @@
         "example": "/youtube/user/@JFlaMusic",
         "parameters": {
           "username": "YouTuber handle with @",
-          "embed": "Default to embed the video, set to any value to disable embedding"
+          "routeParams": "Extra parameters, see the table below"
         },
+        "description": ":::tip Parameter\n| Name       | Description                                                                         | Default |\n| ---------- | ----------------------------------------------------------------------------------- | ------- |\n| embed      | Whether to embed the video, fill in any value to disable embedding                  | embed   |\n| filterShorts | Whether to filter out shorts from the feed, fill in any falsy value to show shorts | true    |\n:::",
         "features": {
           "requireConfig": [
             {
@@ -106191,7 +106518,8 @@
         ],
         "name": "Channel with user handle",
         "maintainers": [
-          "DIYgod"
+          "DIYgod",
+          "pseudoyu"
         ],
         "location": "user.ts"
       }
